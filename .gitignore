@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# other ignored files/folders
+summaTestCases_3.0/
+symbology-style.db
+cache/aiohttp_cache.sqlite
