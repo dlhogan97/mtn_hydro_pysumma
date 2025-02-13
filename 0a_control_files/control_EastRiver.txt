@@ -60,8 +60,6 @@ forcing_summa_path          | default                                     # If '
 
 
 # Parameter settings - DEM
-parameter_dem_main_url      | http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro/distribute/v1.0.1/     # Primary download URL for MERIT Hydro adjusted elevation data. Needs to be appended with filenames.
-parameter_dem_file_template | elv_{}{}.tar                                # Template for download file names.
 parameter_dem_raw_path      | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/dem/1_MERIT_hydro_raw_data'.
 parameter_dem_unpack_path   | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/dem/2_MERIT_hydro_unpacked_data'.
 parameter_dem_vrt1_path     | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/dem/3_vrt'.
@@ -86,7 +84,7 @@ parameter_land_vrt3_path    | default                                     # If '
 parameter_land_vrt4_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/5_multiband_domain_vrt_epsg_4326'. Multiband cropped virtual dataset. 
 parameter_land_tif_path     | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/6_tif_multiband'.  
 parameter_land_mode_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/7_mode_land_class'. 
-parameter_land_tif_name     | nlcd_land_cover_2021.tif                    # Name of the final landclass overview for the domain. Must be in .tif format.
+parameter_land_tif_name     | landclass_usgs.tif                          # Name of the final landclass overview for the domain. Must be in .tif format.
 
 
 # Intersection settings

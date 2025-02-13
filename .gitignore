@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -174,3 +175,42 @@ cython_debug/
 summaTestCases_3.0/
 symbology-style.db
 cache/aiohttp_cache.sqlite
+=======
+# object, archive or module files
+*.[oa]
+*.mod
+# rtf files
+*.rtf
+# summa executable and bin directory
+bin
+summa.exe
+# temporary files
+*~
+*.swp
+# any 'junk' files or directories
+*junk*/
+*junk*
+# sublime text workspace and project files
+*.sublime-project
+*.sublime-workspace
+# cscope and ctags files
+*cscope*
+.tags*
+# OS X .DS_Store files
+.DS_Store
+*-local
+*_local
+*log
+*.cbp
+*.layout
+gmon.out
+summa.exe.dSYM*
+summaversion.inc
+# makefile
+make.out
+Makefile-*
+# backup files
+*.backup
+# site directory from mkdocs
+site/
+>>>>>>> 06f557181f9c2ae02fbb857ab828415b9dabc280
