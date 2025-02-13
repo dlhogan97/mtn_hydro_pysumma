@@ -12,7 +12,7 @@ domain_name                 | TuolumneRiver                                  # U
 
 # Shapefile settings - SUMMA catchment file
 catchment_shp_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment'.
-catchment_shp_name          | bow_distributed_elevation_zone.shp          # Name of the catchment shapefile. Requires extension '.shp'.
+catchment_shp_name          | TuolumneRiver_distributed_elevation_zone.shp          # Name of the catchment shapefile. Requires extension '.shp'.
 catchment_shp_gruid         | GRU_ID                                      # Name of the GRU ID column (can be any numeric value, HRU's within a single GRU have the same GRU ID).
 catchment_shp_hruid         | HRU_ID                                      # Name of the HRU ID column (consecutive from 1 to total number of HRUs, must be unique).
 catchment_shp_area          | HRU_area                                    # Name of the catchment area column. Area must be in units [m^2]
@@ -43,14 +43,14 @@ exe_name_mizuroute          | mizuroute.exe                               # Name
 
 
 # Forcing settings
-forcing_raw_time            | 2008,2013                                   # Years to download: Jan-[from],Dec-[to].
+forcing_raw_time            | 2022,2023                                   # Years to download: Jan-[from],Dec-[to].
 forcing_raw_space           | 51.74/-116.55/50.95/-115.52                 # Bounding box of the shapefile: lat_max/lon_min/lat_min/lon_max. Will be converted to ERA5 download coordinates in script. Order and use of '/' to separate values is mandatory.
-forcing_time_step_size      | 3600                                        # Size of the forcing time step in [s]. Must be constant.
-forcing_measurement_height  | 3                                           # Reference height for forcing measurements [m].
+forcing_time_step_size      | 86400                                        # Size of the forcing time step in [s]. Must be constant.
+forcing_measurement_height  | 2                                           # Reference height for forcing measurements [m].
 forcing_shape_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/forcing'.
-forcing_shape_name          | era5_grid.shp                               # Name of the forcing shapefile. Requires extension '.shp'.
-forcing_shape_lat_name      | lat                                         # Name of the latitude field that contains the latitude of ERA5 data points.
-forcing_shape_lon_name      | lon                                         # Name of the longitude field that contains the latitude of ERA5 data points.
+forcing_shape_name          | gridmet_grid.shp                            # Name of the forcing shapefile. Requires extension '.shp'.
+forcing_shape_lat_name      | y                                           # Name of the latitude field that contains the latitude of ERA5 data points.
+forcing_shape_lon_name      | x                                           # Name of the longitude field that contains the latitude of ERA5 data points.
 forcing_geo_path            | default                                     # If 'default', uses 'root_path/domain_[name]/forcing/0_geopotential'.
 forcing_raw_path            | default                                     # If 'default', uses 'root_path/domain_[name]/forcing/1_raw_data'.
 forcing_merged_path         | default                                     # If 'default', uses 'root_path/domain_[name]/forcing/2_merged_data'.
@@ -71,7 +71,6 @@ parameter_dem_tif_name      | elevation.tif                               # Name
 
 
 # Parameter settings - soil
-parameter_soil_hydro_ID     | 1361509511e44adfba814f6950c6e742            # ID of the Hydroshare resource to download. 
 parameter_soil_raw_path     | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/soilclass/1_soil_classes_global'.
 parameter_soil_domain_path  | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/soilclass/2_soil_classes_domain'.
 parameter_soil_tif_name     | soil_classes.tif                            # Name of the final soil class overview for the domain. Must be in .tif format.
@@ -92,7 +91,7 @@ parameter_land_tif_name     | land_classes.tif                            # Name
 
 # Intersection settings
 intersect_dem_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_dem'.
-intersect_dem_name          | catchment_with_merit_dem.shp                # Name of the shapefile with intersection between catchment and MERIT Hydro DEM, stored in column 'elev_mean'.
+intersect_dem_name          | TuolumneRiver_catchment_intersection.shp                # Name of the shapefile with intersection between catchment and MERIT Hydro DEM, stored in column 'elev_mean'.
 intersect_soil_path         | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_soilgrids'.
 intersect_soil_name         | catchment_with_soilgrids.shp                # Name of the shapefile with intersection between catchment and SOILGRIDS-derived USDA soil classes, stored in columns 'USDA_{1,...n}'
 intersect_land_path         | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_modis'.
