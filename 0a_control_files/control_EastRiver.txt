@@ -8,7 +8,7 @@
 # Modeling domain settings
 root_path                   | /storage/dlhogan/summa_modeling_data/       # Root folder where data will be stored.
 domain_name                 | EastRiver                                  # Used as part of the root folder name for the prepared data.
-
+benchmark                   | default                                      # Location of benchmark data, if 'default' uses 'root_path/domain_[name]/benchmark
 
 # Shapefile settings - SUMMA catchment file
 catchment_shp_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment'.

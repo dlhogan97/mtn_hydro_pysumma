@@ -23,9 +23,11 @@ import warnings
 # storage path
 storage_path  = Path("/storage/dlhogan/summa_modeling_data/")
 # basin name and outlet gauge id
-name, gauge_id = "domain_EastRiver", "09112500"
-# alternatively 
-# name, gauge_id = "domain_TuolumneRiver", "11274790"
+name = "domain_EastRiver"
+if name == "domain_EastRiver":
+    gauge_id = "09112500"
+elif name == "domain_TuolumneRiver":
+    gauge_id = "11274790"
 data_path = storage_path / name
 # crs to convert to 
 data_crs = 5070
@@ -178,10 +180,10 @@ def get_streamflow(gauge_id=gauge_id, data_path=data_path, freq='dv', dates=("20
     - If `save=True`, the data is saved as "streamflow_obs.csv" in the given directory.
     """
     # download streamflow observations
-    q_obs = NWIS().get_streamflow(gauge_id, freq=freq, dates=dates)
+    q_obs = NWIS().get_streamflow(gauge_id, freq=freq, dates=dates, mmd=True)
     if save:
         # save the streamflow observations to a csv
-        q_obs.to_csv(data_path / "benchmark" / "streamflow_obs.csv", index=False)
+        q_obs.to_csv(data_path / "benchmark" / "streamflow_obs.csv", index=True)
     return q_obs
 
 # %%
@@ -266,11 +268,11 @@ def get_subcatchments(basin, data_path=data_path, save=True):
 
 # %%
 if __name__ == "__main__":
-    save=True
+    save=False
     basin, basin_geometry = get_basin_geom(save=save)
     topo = get_topo(basin_geometry, save=save)
     land_cover = get_land_cover(basin, save=save)
-    q_obs = get_streamflow(save=save)
+    q_obs = get_streamflow(save=True)
     flowlines = get_flowlines(save=save)
     subcatchments = get_subcatchments(basin,save=save)
 

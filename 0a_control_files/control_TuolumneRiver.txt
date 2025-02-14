@@ -7,12 +7,12 @@
 
 # Modeling domain settings
 root_path                   | /storage/dlhogan/summa_modeling_data/       # Root folder where data will be stored.
-domain_name                 | TuolumneRiver                                  # Used as part of the root folder name for the prepared data.
-
+domain_name                 | EastRiver                                  # Used as part of the root folder name for the prepared data.
+benchmark                   | default                                      # Location of benchmark data, if 'default' uses 'root_path/domain_[name]/benchmark
 
 # Shapefile settings - SUMMA catchment file
 catchment_shp_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment'.
-catchment_shp_name          | TuolumneRiver_distributed_elevation_zone.shp          # Name of the catchment shapefile. Requires extension '.shp'.
+catchment_shp_name          | EastRiver_distributed_elevation_zone.shp    # Name of the catchment shapefile. Requires extension '.shp'.
 catchment_shp_gruid         | GRU_ID                                      # Name of the GRU ID column (can be any numeric value, HRU's within a single GRU have the same GRU ID).
 catchment_shp_hruid         | HRU_ID                                      # Name of the HRU ID column (consecutive from 1 to total number of HRUs, must be unique).
 catchment_shp_area          | HRU_area                                    # Name of the catchment area column. Area must be in units [m^2]
@@ -21,16 +21,16 @@ catchment_shp_lon           | center_lon                                  # Name
 
 
 # Shapefile settings - mizuRoute river network file
-river_network_shp_path      | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/river_network'.
-river_network_shp_name      | bow_river_network_from_merit_hydro.shp      # Name of the river network shapefile. Requires extension '.shp'.
-river_network_shp_segid     | COMID                                       # Name of the segment ID column.
-river_network_shp_downsegid | NextDownID                                  # Name of the downstream segment ID column.
-river_network_shp_slope     | slope                                       # Name of the slope column. Slope must be in in units [length/length].
-river_network_shp_length    | length                                      # Name of the segment length column. Length must be in units [m].
+# river_network_shp_path      | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/river_network'.
+# river_network_shp_name      | bow_river_network_from_merit_hydro.shp      # Name of the river network shapefile. Requires extension '.shp'.
+# river_network_shp_segid     | COMID                                       # Name of the segment ID column.
+# river_network_shp_downsegid | NextDownID                                  # Name of the downstream segment ID column.
+# river_network_shp_slope     | slope                                       # Name of the slope column. Slope must be in in units [length/length].
+# river_network_shp_length    | length                                      # Name of the segment length column. Length must be in units [m].
 
 
 # Shapefile settings - SUMMA-to-mizuRoute 
-river_basin_needs_remap     | no                                          # 'no' if routing basins map 1:1 onto model GRUs. 'yes' if river segments span multiple GRUs or if multiple segments are inside a single GRU.
+# river_basin_needs_remap     | no                                          # 'no' if routing basins map 1:1 onto model GRUs. 'yes' if river segments span multiple GRUs or if multiple segments are inside a single GRU.
 
 
 # Install settings
@@ -44,8 +44,8 @@ exe_name_mizuroute          | mizuroute.exe                               # Name
 
 # Forcing settings
 forcing_raw_time            | 2022,2023                                   # Years to download: Jan-[from],Dec-[to].
-forcing_raw_space           | 51.74/-116.55/50.95/-115.52                 # Bounding box of the shapefile: lat_max/lon_min/lat_min/lon_max. Will be converted to ERA5 download coordinates in script. Order and use of '/' to separate values is mandatory.
-forcing_time_step_size      | 86400                                        # Size of the forcing time step in [s]. Must be constant.
+# forcing_raw_space         | 51.74/-116.55/50.95/-115.52                 # Bounding box of the shapefile: lat_max/lon_min/lat_min/lon_max. Will be converted to ERA5 download coordinates in script. Order and use of '/' to separate values is mandatory.
+forcing_time_step_size      | 86400                                       # Size of the forcing time step in [s]. Must be constant.
 forcing_measurement_height  | 2                                           # Reference height for forcing measurements [m].
 forcing_shape_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/forcing'.
 forcing_shape_name          | gridmet_grid.shp                            # Name of the forcing shapefile. Requires extension '.shp'.
@@ -60,8 +60,6 @@ forcing_summa_path          | default                                     # If '
 
 
 # Parameter settings - DEM
-parameter_dem_main_url      | http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro/distribute/v1.0.1/     # Primary download URL for MERIT Hydro adjusted elevation data. Needs to be appended with filenames.
-parameter_dem_file_template | elv_{}{}.tar                                # Template for download file names.
 parameter_dem_raw_path      | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/dem/1_MERIT_hydro_raw_data'.
 parameter_dem_unpack_path   | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/dem/2_MERIT_hydro_unpacked_data'.
 parameter_dem_vrt1_path     | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/dem/3_vrt'.
@@ -86,16 +84,16 @@ parameter_land_vrt3_path    | default                                     # If '
 parameter_land_vrt4_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/5_multiband_domain_vrt_epsg_4326'. Multiband cropped virtual dataset. 
 parameter_land_tif_path     | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/6_tif_multiband'.  
 parameter_land_mode_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/7_mode_land_class'. 
-parameter_land_tif_name     | land_classes.tif                            # Name of the final landclass overview for the domain. Must be in .tif format.
+parameter_land_tif_name     | landclass_usgs.tif                          # Name of the final landclass overview for the domain. Must be in .tif format.
 
 
 # Intersection settings
 intersect_dem_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_dem'.
-intersect_dem_name          | TuolumneRiver_catchment_intersection.shp                # Name of the shapefile with intersection between catchment and MERIT Hydro DEM, stored in column 'elev_mean'.
+intersect_dem_name          | EastRiver_catchment_intersection.shp        # Name of the shapefile with intersection between catchment and MERIT Hydro DEM, stored in column 'elev_mean'.
 intersect_soil_path         | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_soilgrids'.
 intersect_soil_name         | catchment_with_soilgrids.shp                # Name of the shapefile with intersection between catchment and SOILGRIDS-derived USDA soil classes, stored in columns 'USDA_{1,...n}'
 intersect_land_path         | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_modis'.
-intersect_land_name         | catchment_with_modis.shp                    # Name of the shapefile with intersection between catchment and MODIS-derived IGBP land classes, stored in columns 'IGBP_{1,...n}'
+intersect_land_name         | catchment_with_nlcd.shp                    # Name of the shapefile with intersection between catchment and MODIS-derived IGBP land classes, stored in columns 'IGBP_{1,...n}'
 intersect_forcing_path      | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_forcing'.
 intersect_routing_path      | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_routing'.
 intersect_routing_name      | catchment_with_routing_basins.shp           # Name of the shapefile with intersection between hydrologic model catchments and routing model catchments.
@@ -120,23 +118,23 @@ settings_summa_trialParams  | trialParams.nc                              # Name
 settings_summa_forcing_list | forcingFileList.txt                         # Name of the file that has the list of forcing files.
 settings_summa_attributes   | attributes.nc                               # Name of the attributes file.
 settings_summa_connect_HRUs | no                                          # Attribute setting: "no" or "yes". Tricky concept, see README in ./5_model_input/SUMMA/3f_attributes. If no; all HRUs modeled as independent columns (downHRUindex = 0). If yes; HRUs within each GRU are connected based on relative HRU elevation (highest = upstream, lowest = outlet). 
-settings_summa_trialParam_n | 1                                           # Number of trial parameter specifications. Specify 0 if none are wanted (they can still be included in this file but won't be read).
+settings_summa_trialParam_n | 0                                           # Number of trial parameter specifications. Specify 0 if none are wanted (they can still be included in this file but won't be read).
 settings_summa_trialParam_1 | maxstep,900                                 # Name of trial parameter and value to assign. Value assumed to be float.
 
 
 # Experiment settings - mizuRoute
-settings_mizu_path          | default                                     # If 'default', uses 'root_path/domain_[name]/settings/mizuRoute'.
-settings_mizu_parameters    | param.nml.default                           # Name of the routing parameters file. 
-settings_mizu_topology      | topology.nc                                 # Name of the river network topology file.
-settings_mizu_remap         | routing_remap.nc                            # Name of the optional catchment remapping file, for cases when SUMMA uses different catchments than mizuRoute.
-settings_mizu_control_file  | mizuroute.control                           # Name of the control file.
-settings_mizu_routing_var   | averageRoutedRunoff                         # Name of SUMMA output variable to use for routing.
-settings_mizu_routing_units | m/s                                         # Units of the variable to be routed.
-settings_mizu_routing_dt    | 3600                                        # Size of the routing time step [s].
-settings_mizu_output_freq   | annual                                      # Frequency with which mizuRoute generates new output files. Must be one of 'single', 'day', 'month', 'annual'.
-settings_mizu_output_vars   | 0                                           # Routing output. '0' for both KWT and IRF; '1' IRF only; '2' KWT only.
-settings_mizu_within_basin  | 0                                           # '0' (no) or '1' (IRF routing). Flag to enable within-basin routing by mizuRoute. Should be set to 0 if SUMMA is run with "subRouting" decision "timeDlay".
-settings_mizu_make_outlet   | 71028585                                    # Segment ID or IDs that should be set as network outlet. Specify multiple IDs separated by commas: X,Y,Z. Specify no IDs as: n/a. Note that this can also be done in the network shapefile.
+# settings_mizu_path          | default                                     # If 'default', uses 'root_path/domain_[name]/settings/mizuRoute'.
+# settings_mizu_parameters    | param.nml.default                           # Name of the routing parameters file. 
+# settings_mizu_topology      | topology.nc                                 # Name of the river network topology file.
+# settings_mizu_remap         | routing_remap.nc                            # Name of the optional catchment remapping file, for cases when SUMMA uses different catchments than mizuRoute.
+# settings_mizu_control_file  | mizuroute.control                           # Name of the control file.
+# settings_mizu_routing_var   | averageRoutedRunoff                         # Name of SUMMA output variable to use for routing.
+# settings_mizu_routing_units | m/s                                         # Units of the variable to be routed.
+# settings_mizu_routing_dt    | 86400                                        # Size of the routing time step [s].
+# settings_mizu_output_freq   | annual                                      # Frequency with which mizuRoute generates new output files. Must be one of 'single', 'day', 'month', 'annual'.
+# settings_mizu_output_vars   | 0                                           # Routing output. '0' for both KWT and IRF; '1' IRF only; '2' KWT only.
+# settings_mizu_within_basin  | 0                                           # '0' (no) or '1' (IRF routing). Flag to enable within-basin routing by mizuRoute. Should be set to 0 if SUMMA is run with "subRouting" decision "timeDlay".
+# settings_mizu_make_outlet   | 71028585                                    # Segment ID or IDs that should be set as network outlet. Specify multiple IDs separated by commas: X,Y,Z. Specify no IDs as: n/a. Note that this can also be done in the network shapefile.
 
 
 # Postprocessing settings
