@@ -3,10 +3,14 @@ import geopandas as gpd
 from pathlib import Path
 import xarray as xr
 import rioxarray as rxr
+from utils.read_files import read_from_control, make_default_path
 
 def clip_geopotential(basin):
     # %%
-    root_path = Path(f"/storage/dlhogan/summa_modeling_data/")
+    # Store the name of the 'active' file in a variable
+    controlFile = f'control_{basin}.txt'
+    # basin name and outlet gauge id
+    root_path = Path(read_from_control(controlFile, "root_path"))
 
     # %%
     # open the geopotential data and take the temporal average

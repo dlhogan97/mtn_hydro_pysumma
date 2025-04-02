@@ -7,12 +7,12 @@
 
 # Modeling domain settings
 root_path                   | /storage/dlhogan/summa_modeling_data/       # Root folder where data will be stored.
-domain_name                 | EastRiver                                  # Used as part of the root folder name for the prepared data.
+domain_name                 | TuolumneRiver                                  # Used as part of the root folder name for the prepared data.
 benchmark                   | default                                      # Location of benchmark data, if 'default' uses 'root_path/domain_[name]/benchmark
 
 # Shapefile settings - SUMMA catchment file
 catchment_shp_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment'.
-catchment_shp_name          | EastRiver_distributed_elevation_zone.shp    # Name of the catchment shapefile. Requires extension '.shp'.
+catchment_shp_name          | TuolumneRiver_distributed_elevation_zone.shp    # Name of the catchment shapefile. Requires extension '.shp'.
 catchment_shp_gruid         | GRU_ID                                      # Name of the GRU ID column (can be any numeric value, HRU's within a single GRU have the same GRU ID).
 catchment_shp_hruid         | HRU_ID                                      # Name of the HRU ID column (consecutive from 1 to total number of HRUs, must be unique).
 catchment_shp_area          | HRU_area                                    # Name of the catchment area column. Area must be in units [m^2]
@@ -89,7 +89,7 @@ parameter_land_tif_name     | landclass_usgs.tif                          # Name
 
 # Intersection settings
 intersect_dem_path          | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_dem'.
-intersect_dem_name          | EastRiver_catchment_intersection.shp        # Name of the shapefile with intersection between catchment and MERIT Hydro DEM, stored in column 'elev_mean'.
+intersect_dem_name          | TuolumneRiver_catchment_intersection.shp        # Name of the shapefile with intersection between catchment and MERIT Hydro DEM, stored in column 'elev_mean'.
 intersect_soil_path         | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_soilgrids'.
 intersect_soil_name         | catchment_with_soilgrids.shp                # Name of the shapefile with intersection between catchment and SOILGRIDS-derived USDA soil classes, stored in columns 'USDA_{1,...n}'
 intersect_land_path         | default                                     # If 'default', uses 'root_path/domain_[name]/shapefiles/catchment_intersection/with_modis'.

@@ -1,5 +1,7 @@
 import cdsapi
 import numpy as np
+from pathlib import Path
+from utils.read_files import read_from_control, make_default_path
 
 def download_ERA5_surface_pressure(bounding_box, years):
     """
@@ -50,9 +52,14 @@ def download_ERA5_surface_pressure(bounding_box, years):
     return dataset, request
 
 tuolumne_bounding_box = [39, -120, 37, -119]
-tuolumne_target = "/storage/dlhogan/summa_modeling_data/domain_TuolumneRiver/forcing/1_raw_data/ERA5_surface_pressure_2011_2024.nc"
+control_file = "control_TuolumneRiver.txt"
+root_path = Path(read_from_control(control_file, "root_path"))
+tuolumne_target = root_path / "domain_TuolumneRiver/forcing/1_raw_data/ERA5_surface_pressure_2011_2024.nc"
+
 east_river_bounding_box = [40, -107, 38, -105]
-east_target = "/storage/dlhogan/summa_modeling_data/domain_EastRiver/forcing/1_raw_data/ERA5_surface_pressure_2011_2024.nc"
+control_file = "control_EastRiver.txt"
+root_path = Path(read_from_control(control_file, "root_path"))
+east_target = root_path / "domain_EastRiver/forcing/1_raw_data/ERA5_surface_pressure_2011_2024.nc"
 years = [str(v) for v in np.arange(2011, 2024).tolist()]
 
 client = cdsapi.Client()

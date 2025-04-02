@@ -18,17 +18,19 @@ from pygeohydro import NWIS
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import warnings
+from utils.read_files import read_from_control, make_default_path
 
 # %%
-# storage path
-storage_path  = Path("/storage/dlhogan/summa_modeling_data/")
+# Store the name of the 'active' file in a variable
+controlFile = 'control_EastRiver.txt'
 # basin name and outlet gauge id
-name = "domain_EastRiver"
+root_path = Path(read_from_control(controlFile, "root_path"))
+name = "domain_" + read_from_control(controlFile, "domain_name")
 if name == "domain_EastRiver":
     gauge_id = "09112500"
 elif name == "domain_TuolumneRiver":
     gauge_id = "11274790"
-data_path = storage_path / name
+data_path = root_path / name
 # crs to convert to 
 data_crs = 5070
 
@@ -268,11 +270,11 @@ def get_subcatchments(basin, data_path=data_path, save=True):
 
 # %%
 if __name__ == "__main__":
-    save=False
+    save=True
     basin, basin_geometry = get_basin_geom(save=save)
     topo = get_topo(basin_geometry, save=save)
     land_cover = get_land_cover(basin, save=save)
-    q_obs = get_streamflow(save=True)
+    q_obs = get_streamflow(save=save)
     flowlines = get_flowlines(save=save)
     subcatchments = get_subcatchments(basin,save=save)
 
