@@ -10,7 +10,7 @@ The destination folders are referred to as "domain folders".
 """
 
 # Specify the control file to use
-sourceFile  = 'control_East_River.txt'
+sourceFile  = 'control_TuolumneRiver.txt'
 
 # Modules
 import os

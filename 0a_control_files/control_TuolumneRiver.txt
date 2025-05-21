@@ -84,6 +84,7 @@ parameter_land_vrt3_path    | default                                     # If '
 parameter_land_vrt4_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/5_multiband_domain_vrt_epsg_4326'. Multiband cropped virtual dataset. 
 parameter_land_tif_path     | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/6_tif_multiband'.  
 parameter_land_mode_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/7_mode_land_class'. 
+parameter_land_tif_raw      | nlcd_land_cover_2021.tif                    # Name of the raw landclass values before matching to modis. In .tif format
 parameter_land_tif_name     | landclass_usgs.tif                          # Name of the final landclass overview for the domain. Must be in .tif format.
 
 

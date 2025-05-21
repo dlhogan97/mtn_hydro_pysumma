@@ -84,6 +84,7 @@ parameter_land_vrt3_path    | default                                     # If '
 parameter_land_vrt4_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/5_multiband_domain_vrt_epsg_4326'. Multiband cropped virtual dataset. 
 parameter_land_tif_path     | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/6_tif_multiband'.  
 parameter_land_mode_path    | default                                     # If 'default', uses 'root_path/domain_[name]/parameters/landclass/7_mode_land_class'. 
+parameter_land_tif_raw      | nlcd_land_cover_2021.tif                    # Name of the raw landclass values before matching to modis. In .tif format
 parameter_land_tif_name     | landclass_usgs.tif                          # Name of the final landclass overview for the domain. Must be in .tif format.
 
 
@@ -100,7 +101,7 @@ intersect_routing_name      | catchment_with_routing_basins.shp           # Name
 
 
 # Experiment settings - general
-experiment_id               | run1                                        # Descriptor of the modelling experiment; used as output folder name.
+experiment_id               | 202505210945                                        # Descriptor of the modelling experiment; used as output folder name.
 experiment_time_start       | default                                     # Simulation start. If 'default', constructs this from 'forcing_raw_time' setting and uses all downloaded forcing data; e.g. '1979-01-01 00:00'.
 experiment_time_end         | default                                     # Simulation end. If 'default', constructs this from 'forcing_raw_time' setting and uses all downloaded forcing data; e.g. '1979-12-31 23:00'.
 experiment_output_summa     | default                                     # If 'default', uses 'root_path/domain_[name]/simulations/[experiment_id]/SUMMA'.
@@ -117,7 +118,7 @@ settings_summa_coldstate    | coldState.nc                                # Name
 settings_summa_trialParams  | trialParams.nc                              # Name of the file that can contain trial parameter values (note, can be empty of any actual parameter values but must be provided and must contain an 'hruId' variable).
 settings_summa_forcing_list | forcingFileList.txt                         # Name of the file that has the list of forcing files.
 settings_summa_attributes   | attributes.nc                               # Name of the attributes file.
-settings_summa_connect_HRUs | no                                          # Attribute setting: "no" or "yes". Tricky concept, see README in ./5_model_input/SUMMA/3f_attributes. If no; all HRUs modeled as independent columns (downHRUindex = 0). If yes; HRUs within each GRU are connected based on relative HRU elevation (highest = upstream, lowest = outlet). 
+settings_summa_connect_HRUs | yes                                          # Attribute setting: "no" or "yes". Tricky concept, see README in ./5_model_input/SUMMA/3f_attributes. If no; all HRUs modeled as independent columns (downHRUindex = 0). If yes; HRUs within each GRU are connected based on relative HRU elevation (highest = upstream, lowest = outlet). 
 settings_summa_trialParam_n | 0                                           # Number of trial parameter specifications. Specify 0 if none are wanted (they can still be included in this file but won't be read).
 settings_summa_trialParam_1 | maxstep,900                                 # Name of trial parameter and value to assign. Value assumed to be float.
 
@@ -147,7 +148,7 @@ visualization_folder        | default                                     # If '
 
 - CWARHM_data
    |
-   |_ domain_BowAtBanff
+   |_ domain_EastRiver
    |   |
    |   |_ forcing
    |   |   |_ 0_geopotential
